@@ -8,16 +8,18 @@
   "private": false,
   "scripts": {
     "dev": "ts-node-dev server/index.ts",
-    "prestart": "yarn build",
-    "start": "NODE_ENV=production ts-node server/index.ts"
+    "build" : "next build && tsc --project tsconfig.server.json",
+    "prestart:prod": "yarn build",
+    "start:prod": "NODE_ENV=production ts-node server/index.ts"
   },
   "dependencies": {
     "babel-loader": "^8.0.4",
     "express": "^4.16.4",
     "next": "^7.0.2",
+    "next-redux-wrapper": "^2.0.0",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
-    "react-redux": "^5.0.7",
+    "react-redux": "^5.1.0",
     "redux": "^4.0.1",
     "redux-devtools-extension": "^2.13.5",
     "redux-thunk": "^2.3.0",
@@ -27,6 +29,8 @@
   "devDependencies": {
     "@types/express": "^4.16.0",
     "@types/next": "^7.0.3",
+    "@types/next-redux-wrapper": "^2.0.0",
+    "@types/react-redux": "^6.0.9",
     "@zeit/next-typescript": "^1.1.1",
     "babel-plugin-styled-components": "^1.8.0",
     "nodemon": "^1.18.6",
