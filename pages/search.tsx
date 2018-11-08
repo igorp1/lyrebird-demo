@@ -44,7 +44,7 @@ class Speeches extends React.Component<SpeechesProps> {
 
     get searchPanel() {
         return (
-            <div>
+            <div style={{marginBottom:'2em'}}>
                 <input  
                     placeholder='Search'
                     style={{width:'300px'}}
