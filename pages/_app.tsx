@@ -3,35 +3,38 @@ import React from 'react'
 import App, { Container } from 'next/app'
 import { NextContext, NextComponentType } from 'next'
 
-import  { Store } from 'redux'
+import  { Store} from 'redux'
 import { Provider } from 'react-redux'
 import withRedux from 'next-redux-wrapper'
 
 // STORE
 import initializeStore from '../src/redux-store/main.store'
-// import { UiStoreActions } from '../src/redux-store/ui.store'
-// import { UserStoreActions } from '../src/redux-store/user.store'
 
 // COMPONENTS
 import Layout from '../components/Layout'
+import { AuthStoreActions } from '../src/redux-store/auth.store';
+import Helpers from '../src/Helpers';
 
 
 interface ContextWithStore extends NextContext {
     store : Store
 }
 interface AppProps {
-    Component : NextComponentType, 
-    pageProps : any, 
+    Component : NextComponentType
+    pageProps : any 
     store : Store 
+    authState : string
+    saveAuthToken : (access_token : string) => void
 }
-class _App extends App<AppProps> {
+class _App extends App <AppProps> {
 
     static async getInitialProps({ Component, ctx } : { Component: NextComponentType, ctx:NextContext }) {
 
         const context = ctx as ContextWithStore
         const pageProps = Component.getInitialProps ? await Component.getInitialProps(context) : {}
         
-        // context.store.dispatch({type: UserStoreActions.SAVE_TOKEN , token});
+        const authToken = Helpers.readCookie('access_token', ctx.req)
+        context.store.dispatch({type: AuthStoreActions.SAVE_ACCESS_TOKEN, authToken });
 
         return { pageProps }
     }
@@ -57,8 +60,6 @@ class _App extends App<AppProps> {
     quickAction = () => {
         console.log('K')
     }
-
-
 
     render () {
         const { Component, pageProps, store } = this.props

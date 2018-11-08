@@ -3,12 +3,12 @@ import { createStore, applyMiddleware, Action } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
 // ⚡️ 1. load store setup
-import { TestStoreDefaultState, TestStoreReducer } from './test.store'
+import { AuthStoreDefaultState, AuthStoreReducer } from './auth.store'
 import { EnvStoreDefaultState } from './env.store'
 
 // ⚡️ 2. register default states here
 const defaultState = {
-    ...TestStoreDefaultState,
+    ...AuthStoreDefaultState,
     ...EnvStoreDefaultState
 } 
 
@@ -17,7 +17,7 @@ export const reducer = (state = defaultState, action : Action ) => {
 
     // ⚡️ 3. register all reducers here separated by ||
     const newState = 
-        TestStoreReducer(state, action) 
+        AuthStoreReducer(state, action) 
 
     return newState || state
 
