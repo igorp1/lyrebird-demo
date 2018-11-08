@@ -1,7 +1,7 @@
 
 # Lyrebird Test
 
-![lyrebird banner](https://routenote.com/blog/wp-content/uploads/2017/04/Lyrebird-1280x411.png)
+![lyrebird banner](https://github.com/igorp1/lyrebird-demo/blob/master/Lyrebird-Demo.gif?raw=true)
 
 
 ## Get Started
