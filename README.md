@@ -1,5 +1,5 @@
 
-# Lyrebird Test
+# Lyrebird Demo
 
 ![lyrebird banner](https://github.com/igorp1/lyrebird-demo/blob/master/Lyrebird-Demo.gif?raw=true)
 
