@@ -1,9 +1,10 @@
 {
-  "name": "lyrebird-test",
+  "name": "lyrebird-demo",
   "version": "1.0.0",
-  "description": "Simple test of the Lyrebird API",
+  "description": "A through setup to get started with the Lyrebird.ai API",
   "main": "server/index.js",
   "author": "idp <igordepaula1@gmail.com>",
+  "repository" : "https://github.com/igorp1/lyrebird-demo",
   "license": "MIT",
   "private": false,
   "scripts": {
