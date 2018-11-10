@@ -39,28 +39,6 @@ class _App extends App <AppProps> {
         return { pageProps }
     }
 
-    componentDidMount(){
-        document.addEventListener("keydown", this.handleHotKeys)
-    }
-
-    componentWillUnmount(){
-        document.removeEventListener("keydown", this.handleHotKeys)
-    }
-
-    // HOT KEYS
-    handleHotKeys = (e : KeyboardEvent) => {
-        if(e.metaKey){
-            switch(e.key){
-                case 'k': return this.quickAction()
-                // more ?
-            }
-        }
-    }
-
-    quickAction = () => {
-        console.log('K')
-    }
-
     render () {
         const { Component, pageProps, store } = this.props
         return (
