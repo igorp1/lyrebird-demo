@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import SideMenu from './SideMenu'
+import Menu from './SideMenu'
 import Router from 'next/router'
 import NProgress from 'nprogress'
 
@@ -17,15 +17,20 @@ const LayoutStyled = styled.div`
         height: 100vh;
         overflow-y: scroll;
     }
+    @media all and (max-width: 700px) {
+        flex-direction: column;
+        div.children-container { 
+            width:100vw;
+        }
+    }
 `
-
 
 interface LayoutProps {
     children : React.ReactNode
 }
 const Layout = ({ children } : LayoutProps) => (
     <LayoutStyled>
-        <SideMenu />
+        <Menu />
         <div className='children-container'>
             { children }
         </div>

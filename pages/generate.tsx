@@ -10,6 +10,7 @@ const TextGenerationArea = styled.textarea`
     min-height : 1.2em;
     height: 90px;
     width: 450px;
+    max-width: 100%;
     font-size: 1em;
     resize: vertical;
     display: block;

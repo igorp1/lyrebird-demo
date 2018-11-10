@@ -8,7 +8,7 @@ import { Dispatch, bindActionCreators } from 'redux';
 import { saveAuthToken } from '../src/redux-store/auth.store';
 import Helpers from '../src/Helpers';
 
-const SideMenuStyled = styled.div`
+const MenuContainerStyled = styled.div`
     background-color: ${ colors.primary };
     width: 225px;
     height: 100vh;
@@ -21,6 +21,31 @@ const SideMenuStyled = styled.div`
     }
     display: flex;
     flex-direction: column;
+    .menu-button{ display:none; }
+    
+    @media all and (max-width: 700px) {
+        width: 100vw;
+        height: 60px;
+        img.logo{ 
+            width: 160px;
+            padding: 0;
+        }
+        .menu-button{
+            display:block;
+            i {
+                fontSize:1.8em;
+                cursor: pointer;
+                color:${colors.light};
+            }
+        }
+        .header-controls{
+            padding: 0 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 60px;
+        }
+    }
 `
 
 const MenuItemsContainer = styled.div`
@@ -39,6 +64,19 @@ const MenuItemsContainer = styled.div`
             background-color: rgba(0,0,0,0.2)
         }
     }
+    @media all and (max-width: 700px) {
+        position : fixed;
+        height: calc(100vh - 60px);
+        background-color: ${ colors.primary };
+        width: 210px;
+        box-shadow: ${shadow.medium};
+        padding: 1em 0;
+        box-sizing: border-box;
+        top: 60px;
+        transition: ${transition};
+        left: -220px;
+        &.open { left:0; }
+    }
 `
 interface SideMenuItem {
     label : string
@@ -47,11 +85,13 @@ interface SideMenuItem {
     action? :  Function  
 }
 
-interface SideMenuProps {
+interface MenuProps {
     authToken? : string 
     saveAuthToken : (token : string) => void
 }
-class SideMenu extends React.Component <SideMenuProps> {
+class Menu extends React.Component <MenuProps> {
+
+    state = {menuOpen:false}
 
     followLink = (link : string) : void => {
         if(link.includes('http')) window.open(link,'_blank')
@@ -97,14 +137,23 @@ class SideMenu extends React.Component <SideMenuProps> {
         if(link) this.followLink(link)
     }
 
+    toggleSideMenu = () => {
+        this.setState({menuOpen : !this.state.menuOpen})
+    }
+
     render() {
         return (
-            <SideMenuStyled>
-                <Link href='/'><a><img className='logo' src='https://lyrebird.ai/images/logo-lyrebird-horizontal.svg' /></a></Link>
-                <MenuItemsContainer>
+            <MenuContainerStyled>
+                <div className='header-controls'>
+                    <Link href='/'><a><img className='logo' src='https://lyrebird.ai/images/logo-lyrebird-horizontal.svg' /></a></Link>
+                    <span className='menu-button'>
+                        <i className="material-icons noselect" onClick={this.toggleSideMenu}>menu</i>
+                    </span>
+                </div>
+                <MenuItemsContainer className={ this.state.menuOpen ? 'open' : '' } >
                     { this.renderMenuItems }
                 </MenuItemsContainer>
-            </SideMenuStyled>
+            </MenuContainerStyled>
         )
     }
 
@@ -116,4 +165,4 @@ const mapDispatchtoProps = (dispatch : Dispatch) => ({
     saveAuthToken : bindActionCreators(saveAuthToken, dispatch)
 })
 
-export default connect(mapStateToProps, mapDispatchtoProps)(SideMenu)
+export default connect(mapStateToProps, mapDispatchtoProps)(Menu)

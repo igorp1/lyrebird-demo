@@ -22,6 +22,11 @@ class Index extends React.Component<IndexProps>{
                     In other words, you can recreate your voice in a computer! <br />
                     With this developer portal you can get started harnessing the power of <a href='https://lyrebird.ai/' target='_blank'>Lyrebird</a>.
                 </p>
+
+                <h3>Get started</h3>
+                <p>
+                    In order to generate audio make sure you <a href='https://beta.myvoice.lyrebird.ai/signup' target='_blank'>signup with Lyrebird</a> and create your voice avatar.
+                </p>
                 {/* <h3>{ this.props.env.LYREBIRD_CLIENT_ID }</h3> */}
                 {this.renderLogin}
 
